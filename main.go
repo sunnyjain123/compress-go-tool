@@ -10,11 +10,15 @@ import (
 	"github.com/sunnyjain123/compress-go-tool/compressor"
 )
 
+var version = "v1.0.2"
+
 func main() {
 	format := flag.String("f", "zip", "compression format: gz | zip")
 	flag.Parse()
 	// examples if someone does not provide any args
 	if flag.NArg() != 1 {
+		fmt.Println(version)
+		fmt.Println("")
 		fmt.Println("Usage:")
 		fmt.Println("  compress-go-tool file.txt")
 		fmt.Println("  compress-go-tool file.txt.gz")
