@@ -229,7 +229,7 @@ git push origin main
 ```bash
 brew update
 brew upgrade compress-go-tool
-compress-go-tool -version
+compress-go-tool
 ```
 
 Once verified, the release is live.

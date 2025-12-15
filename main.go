@@ -10,7 +10,7 @@ import (
 	"github.com/sunnyjain123/compress-go-tool/compressor"
 )
 
-var version = "v1.0.2"
+var version = "v1.0.4"
 
 func main() {
 	format := flag.String("f", "zip", "compression format: gz | zip")
