@@ -1,14 +1,8 @@
 {
-    "event": "concert",
-    "venue": "stadium",
-    "capacity": 50000,
-    "artists": [
-        "A",
-        "B",
-        "C"
-    ],
-    "tickets": {
-        "vip": 5000,
-        "regular": 45000
-    }
+    "project": "compress-go-tool",
+    "author": "sunny jain",
+    "formats": [
+        "gzip",
+        "zip"
+    ]
 }

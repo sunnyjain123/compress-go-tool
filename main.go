@@ -5,35 +5,36 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
-	"github.com/sunnyjain123/compressor-tool/compressor"
+	"github.com/sunnyjain123/compress-go-tool/compressor"
 )
 
 func main() {
-	decompress := flag.Bool("d", false, "decompress file")
-	format := flag.String("f", "zip", "compression format: gz | zip")
 	flag.Parse()
-
+	// examples if someone does not provide any args
 	if flag.NArg() != 1 {
 		fmt.Println("Usage:")
-		fmt.Println("  compress file.txt")
-		fmt.Println("  compress -d file.txt.gz")
+		fmt.Println("  compress-go-tool file.txt")
+		fmt.Println("  compress-go-tool file.txt.gz")
 		os.Exit(1)
 	}
 
+	// Get input file path
+	input := flag.Arg(0)
+	decompress, format := getFormatAndMethod(input)
+
 	var c compressor.Compressor
-	switch *format {
+	switch format {
 	case "zip":
 		c = &compressor.ZipCompressor{}
 	case "gz":
 		c = &compressor.GzipCompressor{}
 	default:
-		c = &compressor.ZipCompressor{}
-		log.Println("Default selection of zip compressor")
+		log.Println("No format provided")
 	}
 
-	input := flag.Arg(0)
-	if *decompress {
+	if decompress {
 		output, err := c.Decompress(input)
 		if err != nil {
 			fmt.Println("Error:", err)
@@ -48,4 +49,23 @@ func main() {
 		}
 		fmt.Println("Compressed to:", output)
 	}
+}
+
+// Get format and method based on input file
+func getFormatAndMethod(inputFile string) (bool, string) {
+	format := flag.String("f", "zip", "compression format: gz | zip")
+	flag.Parse()
+
+	decompress := false
+	if strings.HasSuffix(inputFile, ".gz") {
+		decompress = true
+		*format = "gz"
+	}
+
+	if strings.HasSuffix(inputFile, ".zip") {
+		decompress = true
+		*format = "zip"
+	}
+
+	return decompress, *format
 }

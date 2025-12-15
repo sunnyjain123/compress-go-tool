@@ -156,7 +156,6 @@ go build -o compress-go-tool
 ```
 
 ```bash
-  -d bool decompress file
   -f string
         compression format: gz | zip (default "zip")
 ```
