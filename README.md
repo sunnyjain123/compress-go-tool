@@ -61,6 +61,7 @@ compress-go-tool --help
 Upgrade:
 
 ```bash
+brew update
 brew upgrade compress-go-tool
 ```
 
